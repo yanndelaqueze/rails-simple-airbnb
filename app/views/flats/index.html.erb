@@ -4,6 +4,12 @@
   <div class="container">
     <h2 class="navbar-brand">Simple Airbnb</h2>
     <h3><%= link_to "Add flat", new_flat_path %></h3>
+    <div>
+      <form>
+        <input name="query" value="<%= params[:query] %>">
+        <button type="submit">Search</button>
+      </form>
+    </div>
   </div>
 </nav>
 <div class="container mt-3">
@@ -13,15 +19,19 @@
   <% @flats.each do |flat| %>
   <div class="col-3">
     <div class="card">
-      <div style=""></div>
+      <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1494526585095-c41746248156?w=1200')"></div>
       <%= link_to flat.name, flat_path(flat), class: "text-decoration-none" %>
       <p><%= flat.address %></p>
-      <p><%= flat.number_of_guests %> guests</p>
-      <p><%= flat.price_per_night %> $</p>
-      <%= link_to "More info", flat_path(flat)  %>
-      <%= link_to "Edit Flat", edit_flat_path(flat)  %>
-      <%= link_to "Delete Flat", flat_path(flat),
-      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+      <div class="flat-info d-flex justify-content-sm-start">
+        <p><i class="fa-solid fa-person"></i> <%= flat.number_of_guests %></p>
+        <p><i class="fa-solid fa-euro-sign"></i><%= flat.price_per_night %></p>
+      </div>
+      <div class="action border">
+        <%= link_to "More info", flat_path(flat), class:"text-primary" %>
+        <%= link_to "Edit Flat", edit_flat_path(flat), class:"text-warning"   %>
+        <%= link_to "Delete Flat", flat_path(flat), class:"text-danger",
+        data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+      </div>
     </div>
   </div>
   <% end %>
