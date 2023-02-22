@@ -1,0 +1,8 @@
+<div class="container">
+  <h2><%= @flat.name %></h2>
+  <h3>Address : <%= @flat.address %></h3>
+  <h4>Description : <%= @flat.description %></h4>
+  <h5>Price : <%= @flat.price_per_night %> $</h5>
+  <h5>Capacity : <%= @flat.number_of_guests %> Guests</h5>
+  <%= link_to "Edit Flat", edit_flat_path(@flat)  %>
+</div>
